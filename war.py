@@ -6,7 +6,7 @@ from pprint import pprint
 coc = ClashOfClans(bearer_token = params['API_KEY'])
 r = coc.clans('#908PG8L8').currentwar().get()
 
-# pprint (r)
+#pprint (r)
 
 byPlayerResults = []
 
@@ -14,6 +14,9 @@ print ("===== General results =====")
 print ("Tag,\tName,\tAttacks,\tStars")
 
 for member in r['clan']['members']:
+    if not 'attacks' in member: 
+        continue
+
     stars = sum([attack['stars'] for attack in member['attacks']])
     print ("%s,%s,%s,%s" % (member['tag'], member['name'], len(member['attacks']), stars))
     r0 = {}
@@ -32,7 +35,7 @@ for member in r['clan']['members']:
         byPlayerResults.append(result)
 
 
-print ("===== By players results =====")
+print ("\n===== By players results =====")
 print ("Tag,\tName,\tTownHall Level,\tStars,\tDesctruction Percentage,\tOpponent TownHall Level")
 for result in byPlayerResults:
     print("%s,%s,%s,%s,%s,%s" % (
