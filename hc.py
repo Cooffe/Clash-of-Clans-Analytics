@@ -1,7 +1,7 @@
 import requests
 import urllib
 import json
-from happycity import params
+from init import params
 from argparse import ArgumentParser
 
 
