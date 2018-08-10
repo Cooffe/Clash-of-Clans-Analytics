@@ -2,6 +2,15 @@ from coc import ClashOfClans
 from init import params
 import json
 from pprint import pprint
+from argparse import ArgumentParser
+
+
+parser = ArgumentParser(description='Displaying clan war analytics')
+parser.add_argument('cw_number', metavar='cw_number', type=int, help='Clan war number', default=0, nargs='?')
+args = parser.parse_args()
+
+cw_number = args.cw_number
+
 
 coc = ClashOfClans(bearer_token = params['API_KEY'])
 r = coc.clans('#908PG8L8').currentwar().get()
@@ -36,9 +45,10 @@ for member in r['clan']['members']:
 
 
 print ("\n===== By players results =====")
-print ("Tag,\tName,\tTownHall Level,\tStars,\tDesctruction Percentage,\tOpponent TownHall Level")
+print ("CW #, Tag,\tName,\tTownHall Level,\tStars,\tDesctruction Percentage,\tOpponent TownHall Level")
 for result in byPlayerResults:
-    print("%s,%s,%s,%s,%s,%s" % (
+    print("%s, %s, %s, %s, %s, %s, %s" % (
+        cw_number,
         result['tag'],
         result['name'],
         result['townhallLevel'],
