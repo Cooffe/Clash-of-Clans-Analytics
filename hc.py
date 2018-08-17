@@ -11,7 +11,7 @@ args = parser.parse_args()
 
 
 division = 2 if args.division == 2 else 1
-th_range = {1: [7, 12], 2: [1, 9]}
+th_range = {1: [1, 12], 2: [1, 9]}
 
 headers = {
     "Content-Type": "application/json",
@@ -58,6 +58,7 @@ for member in clan['memberList']:
     wl = [hero['level'] for hero in player['heroes'] if hero['name'] == 'Grand Warden']
     warden_level = wl[0] if len(wl) else ''
   
+    
     print("%s,%s,%s,%s,%s,%s,,%s,,%s,%s,%s,,,%s,%s" % (
         player['tag'], 
         player['name'], 
@@ -72,7 +73,7 @@ for member in clan['memberList']:
         player['donations'], 
         player['donationsReceived']
     ))
-
+    
 #    print ([troop['level'] for troop in player['troops'] if troop['village'] == 'home'])
 #    print (troops_level_sum)
     
